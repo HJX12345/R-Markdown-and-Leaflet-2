@@ -7,7 +7,7 @@ output: html_document
 
 ### Summary
 
-I've been to Osaka, Japan for several times and below are some places that I've been visited. Harakas is the tallest hotel in Osaka and the night view is great.
+I've been to Osaka, Japan for several times and below are some places that I've been visited. Harukas is the tallest hotel in Osaka and the night view is great.
 
 Some interesting places can be filtered by the layer on the upper right.
 
