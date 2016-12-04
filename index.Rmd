@@ -13,6 +13,7 @@ Some interesting places can be filtered by the layer on the upper right.
 
 ```{r}
 library(leaflet)
+library(htmltools)
 
 df <- read.csv('map.csv')
 
@@ -25,7 +26,7 @@ for(g in groups){
   map = map %>% addCircleMarkers(data = d, lng = ~lng, lat = ~lat, 
                                  color = ~groupColors(type),
                                  group = g) %>%
-      addMarkers(data = d, lng = ~lng, lat = ~lat) %>%
+      addMarkers(data = d, lng = ~lng, lat = ~lat, popup = ~htmlEscape(name)) %>%
       addPopups(135.513916, 34.646416,
                 popup="Harukas",
                 options=popupOptions(closeButton=T))
