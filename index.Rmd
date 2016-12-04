@@ -1,0 +1,38 @@
+---
+title: "R-Markdown-and-Leaflet"
+author: "Sean"
+date: "December 4, 2016"
+output: html_document
+---
+
+### Summary
+
+I've been to Osaka, Japan for several times and below are some places that I've been visited. Harakas is the tallest hotel in Osaka and the night view is great.
+
+Some interesting places can be filtered by the layer on the upper right.
+
+```{r}
+library(leaflet)
+
+df <- read.csv('map.csv')
+
+groups = as.character(unique(df$type))
+groupColors = colorFactor(palette = c('green', 'red', 'cyan', 'blue'), domain = df$type)
+
+map = leaflet(df) %>% addTiles(group = "OpenStreetMap")
+for(g in groups){
+  d = df[df$type == g, ]
+  map = map %>% addCircleMarkers(data = d, lng = ~lng, lat = ~lat, 
+                                 color = ~groupColors(type),
+                                 group = g) %>%
+      addMarkers(data = d, lng = ~lng, lat = ~lat) %>%
+      addPopups(135.513916, 34.646416,
+                popup="Harukas",
+                options=popupOptions(closeButton=T))
+
+}
+
+map %>% addLayersControl(overlayGroups = groups)
+```
+
+
